@@ -50,32 +50,38 @@ function FeedPage() {
   };
 
   return (
-    <main>
-      <h1>Feed Page</h1>
+    <main className="flex flex-col gap-2 max-w-xl mx-auto">
+      <h1 className="text-2xl font-bold mb-5">Feed Page</h1>
 
-      <form onSubmit={handleSubmit}>
-        <h2>What's in your mind?</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2  p-5 rounded-md">
+        <h2 className="text-m font-bold">What's in your mind?</h2>
         <label htmlFor="title" />
         <input
           type="text"
           title={title}
-          placeholder="title"
+          placeholder="Title"
           name="title"
           onChange={(e) => setTitle(e.target.value)}
+          className="outline p-2 rounded-md w-full"
+          required
         />
 
         <label htmlFor="body" />
         <input
           type="text"
           name="body"
-          placeholder="body"
+          placeholder="Body"
           value={body}
           onChange={(e) => setBody(e.target.value)}
+          className="outline p-2 rounded-md w-full"
+          required
         />
 
-        <input type="submit" value="Post" />
+        <input type="submit" value="Post" 
+        className="outline p-2 rounded-md w-full hover:bg-emerald-400 hover:text-white hover:cursor-pointer"
+        />
       </form>
-
+    <hr className="mt-2 w-full"/>
       <div>
         {posts.length > 0 && (
           <>

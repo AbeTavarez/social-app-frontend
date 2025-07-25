@@ -2,9 +2,8 @@ import { useState } from "react";
 import { backendClient } from "../clients/backendClient";
 import { useNavigate } from "react-router-dom";
 
-
 function SignInPage() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -22,24 +21,26 @@ function SignInPage() {
     e.preventDefault();
 
     try {
-        const res = await backendClient.post('/users/login', formData);
-        console.log(res.data);
+      const res = await backendClient.post("/users/login", formData);
+      console.log(res.data);
 
-        localStorage.setItem('social-app-token', JSON.stringify(res.data.token))
-        
-        navigate('/feed');
+      localStorage.setItem("social-app-token", JSON.stringify(res.data.token));
+
+      navigate("/feed");
     } catch (error) {
-        console.log(error);     
+      console.log(error);
     }
   };
 
-
   return (
     <main>
-      <h1>Sign In Page</h1>
+      <h1 className="text-2xl font-bold mb-5">Sign In Page</h1>
 
-      <form onSubmit={handleSubmit}>
-        <h2>Sign In</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-2 max-w-xl mx-auto"
+      >
+        <h2 className="text-xl font-bold">Sign In</h2>
 
         <label htmlFor="email" />
         <input
@@ -48,6 +49,8 @@ function SignInPage() {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
+          className="outline p-2 rounded-md w-full"
+          required
         />
 
         <label htmlFor="password" />
@@ -57,9 +60,16 @@ function SignInPage() {
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
+          className="outline p-2 rounded-md w-full"
+          required
         />
 
-        <input type="submit" value="Login" />
+        <input
+          type="submit"
+          value="Login"
+          className="outline p-2 rounded-md w-full hover:bg-gray-950 hover:text-white hover:cursor-pointer"
+          required
+        />
       </form>
     </main>
   );
